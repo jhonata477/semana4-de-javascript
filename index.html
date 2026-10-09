@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulação do DOM</title>
+
+    <style>
+        .destaque {
+            color: red;
+            font-weight: bold;
+        }
+
+        .feito {
+            text-decoration: line-through;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="titulo">Meu Blog</h1>
+
+    <p class="texto">Este é o primeiro parágrafo.</p>
+    <p class="texto">Este é o segundo parágrafo.</p>
+
+    <h2>Lista de itens e tarefas</h2>
+    <ul id="lista"></ul>
+
+    <script src="script.js">
+
+console.log("===== BLOCO 2: MANIPULAÇÃO DO DOM =====");
+
+// 1. Seleciona o h1 e altera seu texto
+const titulo = document.querySelector("#titulo");
+
+titulo.textContent = "Blog do Jhonata";
+
+
+// 2. Seleciona todos os parágrafos e imprime seus textos
+const paragrafos = document.querySelectorAll(".texto");
+
+paragrafos.forEach(paragrafo => {
+    console.log(paragrafo.textContent);
+});
+
+
+// 3. Seleciona a lista e adiciona dois itens com innerHTML
+const lista = document.querySelector("#lista");
+
+lista.innerHTML = `
+    <li>Primeiro item</li>
+    <li>Segundo item</li>
+`;
+
+
+// 4. Cria o terceiro item usando createElement
+const terceiroItem = document.createElement("li");
+
+terceiroItem.textContent = "Terceiro item";
+
+lista.append(terceiroItem);
+
+
+// 5. Adiciona a classe destaque e verifica se ela existe
+terceiroItem.classList.add("destaque");
+
+console.log(
+    "O terceiro item tem a classe destaque?",
+    terceiroItem.classList.contains("destaque")
+);
+
+
+// 6. Cria uma lista de tarefas
+const tarefas = [
+    "Estudar JS",
+    "Fazer exercícios",
+    "Revisar DOM"
+];
+
+tarefas.forEach(tarefa => {
+    const item = document.createElement("li");
+
+    item.textContent = tarefa;
+
+    lista.append(item);
+});
+
+
+// Aplica a classe feito ao primeiro li da lista
+const primeiroItem = lista.querySelector("li");
+
+primeiroItem.classList.add("feito");
+
+
+// Imprime a quantidade total de itens
+const quantidade = lista.querySelectorAll("li").length;
+
+console.log("Quantidade total de itens:", quantidade);
+
+    </script>
+</body>
+</html>
